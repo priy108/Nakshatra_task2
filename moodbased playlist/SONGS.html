@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mood Playlist</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url('background_2.jpg');
+      color: #333;
+      text-align: center;
+
+    }
+
+    header {
+      background-image: url('background_2.jpg');
+      color: white;
+      padding: 1.5rem;
+      font-size: 1.5rem;
+    }
+
+    .mood-buttons {
+      margin: 2rem 0;
+    }
+
+    .mood-button {
+      background-color: #000000;
+      border: 2px solid #fff;
+      color: #fff;
+      padding: 0.8rem 1.5rem;
+      margin: 0.5rem;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 1rem;
+    }
+
+    .mood-button:hover {
+      background-color: #fff;
+      color: black;
+    }
+
+    .playlist {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 1rem 2rem;
+    }
+
+    .song-card {
+      background-color: black;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 200px;
+      overflow: hidden;
+      transition: transform 0.2s;
+    }
+
+    .song-card:hover {
+      transform: scale(1.05);
+    }
+
+    .cover-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .song-info {
+      padding: 1rem;
+    }
+
+    .song-title {
+      color: whitesmoke;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .song-artist {
+      color: #666;
+      margin-top: 0.3rem;
+    }
+  </style>
+</head>
+<body>
+  <header>Mood-Based Playlist 🎧</header>
+
+  <div class="mood-buttons">
+    <button class="mood-button" onclick="showPlaylist('happy')">Happy</button>
+    <button class="mood-button" onclick="showPlaylist('sad')">Sad</button>
+    <button class="mood-button" onclick="showPlaylist('angry')">Angry</button>
+    <button class="mood-button" onclick="showPlaylist('chill')">Chill</button>
+  </div>
+  <div class="playlist" id="playlist"></div>
+
+  <script>
+    const playlists = {
+      happy: [
+        { title: "Aasa kooda", artist: "Sai abhyankkar", image: "happy1.jpg" },
+        { title: "Aval", artist: "Santhosh naarayanan", image: "happy2.jpg" },
+        { title: "Idhu naal", artist: "AR Rahman", image: "happy3.jpg" }
+      ],
+      sad: [
+        { title: "Why this kolavari di", artist: "Anirudh", image: "sad1.jpg" },
+        { title: "Voda voda", artist: "Dhanush", image: "sad2.jpeg" },
+        { title: "Ava enna", artist: "Harris jayaraj", image: "sad3.jpg" }
+      ],
+      angry: [
+        { title: "Bad blood", artist: "Taylor swift", image: "angry1.jpg" },
+        { title: "Kannukul Kanai", artist: "AR Rahman", image: "angry2.jpg" },
+        { title: "Kill this love", artist: "Blackpink", image: "angry3.jpg" }
+      ],
+      chill: [
+        { title: "Boomi enna suthudhe", artist: "Anirudh", image: "chill1.png" },
+        { title: "Ullalla", artist: "Anirudh", image: "chill2.jpg" },
+        { title: "Happily ever after", artist: "Txt", image: "chill3.jpg" }
+      ]
+    };
+
+    function showPlaylist(mood) {
+      const container = document.getElementById('playlist');
+      container.innerHTML = '';
+
+      playlists[mood].forEach(song => {
+        const songCard = `
+          <div class="song-card">
+            <img class="cover-img" src="${song.image}" alt="${song.title}">
+            <div class="song-info">
+              <div class="song-title">${song.title}</div>
+              <div class="song-artist">${song.artist}</div>
+            </div>
+          </div>
+        `;
+        container.innerHTML += songCard;
+      });
+    }
+  </script>
+</body>
+</html>
